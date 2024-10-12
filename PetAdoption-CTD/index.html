@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- link to css -->
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -27,13 +29,13 @@
             </button>
             <nav class="primary-navigation" id="primary-navigation">
               <ul aria-label="Primary" role="list" class="nav-list">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pets</a></li>
-                <li><a href="#">Favorites</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pets.html">Pets</a></li>
+                <li><a href="pets.html">Favorites</a></li>
                 <li><a href="#">About Us</a></li>
               </ul>
             </nav>
-            <button class="button | display-sm-none display-md-inline-flex">Get Started</button>
+            <button class="button | display-sm-none display-md-inline-flex"><a href="pets.html">Get Started</a></button>
           </div>
         </div>
     </header>
@@ -49,7 +51,7 @@
         <div>
           <h1 class="fs-primary-heading fw-bold">Find Your Forever Pet Today</h1>
           <p>A destination shelter like no other</p>
-          <button class="button">Get Started</button>
+          <button class="button"><a href="pets.html">Get Started</a></button>
         </div>
         <div>
           <img src="images/Dog-Img-2.jpg" alt="">
@@ -85,35 +87,39 @@
 
 <!-- ============footer start ================= -->
 <footer>
-    <div class="primary-footer">
+  <div class="primary-footer">
       <nav class="footer-nav">
-        <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Pets</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Favorites</a></li>
-        </ul>
+          <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Pets</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Favorites</a></li>
+          </ul>
       </nav>
-    </div>
-    <div class="contact-method">
-      <span class="icon solid alt fa-home"></span>
-      <h3>Location</h3>
-      <span>1234 Main St.</span> <br />
-      <span>Duluth GA 30096</span>
-    </div>
-    <div class="contact-method">
-      <span class="icon solid alt fa-phone"></span>
-      <h3>Phone</h3>
-      <span>470-444-4444</span>
-    </div>
-    <div class="contact-method">
-      <span class="icon solid alt fa-envelope"></span>
-      <h3>Email</h3>
-      <span>info@petfinder.com</span>
-    </div>
-    <p>© 2021 PetFinder. All rights reserved.</p>
+  </div>
   
+  <div class="contact-methods"> <!-- New wrapper for contact methods -->
+      <div class="contact-method">
+          <icon class="fa fa-home"></icon>
+          <h3>Location</h3> 
+          <span>1234 Main St. <br />
+          Duluth GA 30096</span>
+      </div>
+      <div class="contact-method">
+          <icon class="fa fa-phone"></icon>
+          <h3>Phone</h3>
+          <span>470-444-4444</span>
+      </div>
+      <div class="contact-method">
+          <icon class="fa fa-envelope"></icon>
+          <h3>Email</h3>
+          <span>info@petfinder.com</span>
+      </div>
+  </div>
+  
+  <p>© 2021 PetFinder. All rights reserved.</p>
 </footer>
+
 
 <!-- ============= footer end ================ -->
 
@@ -122,6 +128,7 @@
     
     
     <!-- link to js -->
-    <script src="/main.js"></script>
+    <script src="main.js"></script>
+
   </body>
 </html>

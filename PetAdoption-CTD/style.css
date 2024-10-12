@@ -155,7 +155,12 @@ body{
   background-color: var(--clr-neutral-800);
   color: var(--clr-accent-300);
 }
-
+.button a {
+  text-decoration: none;
+}
+.button a:visited{
+  color: white;
+}
 h1{
   font-size: var(--size-700);
   font-weight: var(--fw-bold);
@@ -198,13 +203,14 @@ p{
 
 .nav-list a {
   text-decoration: none;
-  color: var(--clr-primary-400);
+  color: var(--clr-neutral-800);
+  font-weight: var(--fw-semi-bold);
 }
+
 .nav-list a:hover,
 .nav-list a:focus {
   color: var(--clr-accent-400);
 }
-
 
 /* ========= Mobile Nav ================ */
 @media (max-width: 50em){
@@ -337,3 +343,101 @@ p{
 .pets:hover {
 box-shadow: var(--box-shadow) ;
 }
+
+/* footer */
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: var(--clr-accent-300); /* Light background */
+  color: var(--clr-primary-400);
+  font-size: var(--fs-600);
+  border-top: 1px solid #ccc; /* Optional border on top */
+}
+
+.primary-footer {
+  flex: 1; /* Grow to take up available space */
+}
+
+.footer-nav {
+  display: flex; /* Set to flex for column layout */
+  flex-direction: column; /* Arrange items in a column */
+}
+
+.footer-nav ul {
+  list-style: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0; /* Remove default margin */
+}
+
+.footer-nav li {
+  margin: 30px;
+  margin-top: 40px;
+  margin-left: 8rem;
+}
+
+.footer-nav a {
+  text-decoration: none; /* Remove underline */
+  color: var(--clr-primary-400);
+  font-size: var(--fs-600);
+  font-weight: bold;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.contact-methods {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack contact methods in a column */
+  align-items: flex-end ;
+  margin-top: 20px ;
+  margin-right: 6rem; /* Add margin to separate from navigation */
+}
+
+.contact-method {
+  display: flex; /* Flex container for icons and text */
+  align-items: center; /* Center items vertically */
+  margin: 20px 0; /* Space between contact methods */
+}
+
+.contact-method icon {
+  padding: 10px; /* Space between icon and text */
+}
+
+.contact-method h3 {
+  margin: none; /* Remove margin */
+  font-weight: bold;
+}
+
+.contact-method span{
+  margin: 10px;
+}
+
+footer p {
+  margin-top: 20px; /* Space above copyright */
+  text-align: center; /* Center copyright text */
+  width: 100%; /* Take full width */
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pet-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#favorites-container {
+  margin-top: 20px;
+}
+
+
+
