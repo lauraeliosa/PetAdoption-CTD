@@ -37,25 +37,62 @@
       </header>
 
 <!-- cats -->
-      <section>
+      <section id="cats">
         <h2>Cats</h2>
-        <div id="cat-container" class="image-container"></div>
+        <div id="cat-container"></div>
         <select id="cat-breed-select" onchange="fetchImagesByBreed('cat', this.value)">
             <option value="">Select a Breed</option>
           </select>
 
       </section>
 <!-- dogs -->
-      <section>
+      <section id="dogs">
         <h2>Dogs</h2>
-        <div id="dog-container" class="image-container"></div>
+        <div id="dog-container"></div>
         <select id="dog-breed-select" onchange="fetchImagesByBreed('dog', this.value)">
           <option value="">Select a Breed</option>
         </select>
       </section>
       
       
-      
+     <!-- ========= footer start ========== -->
+<footer>
+  <div class="primary-footer">
+      <nav class="footer-nav">
+          <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="pets.html">Pets</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Favorites</a></li>
+          </ul>
+      </nav>
+  </div>
+  
+  <div class="contact-methods"> <!-- New wrapper for contact methods -->
+      <div class="contact-method">
+          <icon class="fa fa-home"></icon>
+          <h3>Location</h3> 
+          <span>1234 Main St. <br />
+          Duluth GA 30096</span>
+      </div>
+      <div class="contact-method">
+          <icon class="fa fa-phone"></icon>
+          <h3>Phone</h3>
+          <span>470-444-4444</span>
+      </div>
+      <div class="contact-method">
+          <icon class="fa fa-envelope"></icon>
+          <h3>Email</h3>
+          <span>info@petfinder.com</span>
+      </div>
+  </div>
+  
+  <p>© 2021 PetFinder. All rights reserved.</p>
+</footer>
+
+
+<!-- ============= footer end ================ -->
+
       
       <script type="module" src="main.js"></script>
 
