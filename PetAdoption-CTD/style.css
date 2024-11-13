@@ -473,3 +473,38 @@ footer p {
 select{
   margin: 3rem;
 }
+
+/* STYLING FOR VOTING.HTML */
+
+/* align the container */
+#voting-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.voting-heading{
+  padding-top: var(--size-900);
+}
+
+.voting-para {
+  font-size: 1.15rem;
+  padding: var(--size-800);
+  width: 100%;
+}
+
+#cat-image-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--size-500);
+}
+.button-container{
+  margin-bottom: var(--size-1000);
+}
+.large-image {
+  width: 500px;
+  height: auto;
+  object-fit: cover;
+}

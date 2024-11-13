@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favorites</title>
+    <title>Voting</title>
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
     <div class="container">
       <div class="nav-wrapper">
           <a href="index.html" class="primary-header-logo">CTD Adoptions</a>
-          <button class="mobile-nav-toggle" araia-controls="primary-navigation" aria-expanded="false">
+          <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
             <img src="images/icon-hamburger.svg" alt="" class="icon-hamburger" aria-hidden="true">
             <img src="images/icon-close.svg" alt="" class="icon-close" aria-hidden="true">
             <span class="visually-hidden">Menu</span>
@@ -30,8 +30,8 @@
             <ul aria-label="Primary" role="list" class="nav-list">
               <li><a href="index.html">Home</a></li>
               <li><a href="pets.html">Pets</a></li>
-              <li><a href="favorites.html">Favorites</a></li>
-              <li><a href="#">About Us</a></li>
+              <li><a href="voting.html">Voting</a></li>
+              <li><a href="aboutUs.html">About Us</a></li>
             </ul>
           </nav>
           <button class="button | display-sm-none display-md-inline-flex"><a href="pets.html">Get Started</a></button>
@@ -41,7 +41,22 @@
   
 
 
+  <section>
+    <div id="voting-container">
+        <div id="cat-vote-section">
+            <h2 class="voting-heading">Vote for Cats</h2>
+            <p class="voting-para">Help us find the cutest cats by voting! 
+              Click on the thumbs up if you love the cat picture, or thumbs down if you think it’s just not their best shot. 
+              Your votes help us discover which cats are the most pawsitively adorable!</p>
+            <div id="cat-image-container"></div>
+              <div class="button-container">
+                <button onclick="voteOnImage('cat', 1)">Upvote Cat</button>
+                <button onclick="voteOnImage('cat', -1)">Downvote Cat</button>
 
+              </div>
+        </div>
+    </div>
+</section>
 
 
 
@@ -63,8 +78,8 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="pets.html">Pets</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="favorites.html">Favorites</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>
+                <li><a href="voting.html">Voting</a></li>
             </ul>
         </nav>
     </div>
@@ -96,6 +111,6 @@
   
 
      <!-- link to js -->
-    <script type="module" src="main.js"></script>
+    <script type="module" src="./main.js"></script>
 </body>
 </html>
