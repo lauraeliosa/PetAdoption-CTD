@@ -21,8 +21,7 @@ npm run dev
 
 How to Use Site
 Filter by Breed: Navigate to the "Filter by Breed" section to view a list of dogs filtered by your selected breed.
-Voting: Use the "Voting" section to be able to up-vote or down-vote your favorite picture. You should be notified with your selection as an alert and the page will reload.
-
-Navigation: Use the navigation bar to switch between the "Filter by Breed" and "Voting" sections.
+Favorites: Use the "Favorites" section to view and manage your list of favorite dogs.
+Navigation: Use the navigation bar to switch between the "Filter by Breed" and "Favorites" sections.
 
 
