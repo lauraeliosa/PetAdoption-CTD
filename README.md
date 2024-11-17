@@ -20,8 +20,8 @@ npm run dev
 5. Open your browser and navigate to http://localhost:5173
 
 How to Use Site
-Filter by Breed: Navigate to the "Filter by Breed" section to view a list of dogs filtered by your selected breed.
-Favorites: Use the "Favorites" section to view and manage your list of favorite dogs.
-Navigation: Use the navigation bar to switch between the "Filter by Breed" and "Favorites" sections.
+Filter by Breed: Navigate to the "Filter by Breed" section to view a list of cats and dogs filtered by your selected breed.
+Voting: Use the "Voting" section to upvote or downvote your favorite cat picture!
+Navigation: Use the navigation bar to switch between the "Filter by Breed" and "Voting" sections.
 
 
