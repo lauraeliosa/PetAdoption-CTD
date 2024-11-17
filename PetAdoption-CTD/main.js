@@ -135,7 +135,7 @@ function displayVotingImage(image, type) {
     img.alt = `${type} image for voting`;
     img.classList.add('pet-image');
     img.classList.add('large-image');
-    img.dataset.imageId = image.id; // Store image ID for voting
+    img.dataset.imageId = image.id; 
     container.appendChild(img);
   }
 }
