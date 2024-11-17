@@ -349,6 +349,7 @@ box-shadow: var(--box-shadow) ;
 footer {
   display: flex;
   flex-wrap: wrap;
+  /* height: max-content; */
   padding: 20px;
   background-color: var(--clr-accent-300); /* Light background */
   color: var(--clr-primary-400);
@@ -442,6 +443,11 @@ footer p {
 
 
 /* styling for pets.html */
+.container-pets{
+  padding-top: var(--size-1000);
+  padding-bottom: var(--size-1000);
+}
+
 #cats {
   display: flex;
   flex-direction: column;
@@ -483,9 +489,11 @@ select{
   align-items: center;
   flex-direction: column;
   text-align: center;
+  padding-top: var(--size-1000);
+  padding-bottom: var(--size-1000);
 }
 .voting-heading{
-  padding-top: var(--size-900);
+  /* padding-top: var(--size-900); */
 }
 
 .voting-para {
@@ -500,9 +508,7 @@ select{
   align-items: center;
   padding: var(--size-500);
 }
-.button-container{
-  margin-bottom: var(--size-1000);
-}
+
 .large-image {
   width: 500px;
   height: auto;
