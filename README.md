@@ -15,9 +15,10 @@ How to run on local computer:
 1. Clone the repository to your local computer.
 
  ` ``bash
+ 
 git clone https://github.com/lauraeliosa/PetAdoption-CTD
-cd PetAdoption-CTD
 
+cd PetAdoption-CTD
 
 2. Install node.js
 
