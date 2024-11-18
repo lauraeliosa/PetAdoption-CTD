@@ -1,7 +1,10 @@
-// Mobile navigation setup
+const API_KEY = import.meta.env.VITE_CAT_API_KEY; 
+
+//nav hamburger menu
 const primaryHeader = document.querySelector('.primary-header');
 const navToggle = document.querySelector('.mobile-nav-toggle');
 const primaryNav = document.getElementById('primary-navigation');
+
 
 if (navToggle) {
   navToggle.addEventListener('click', () => {
@@ -14,175 +17,199 @@ if (navToggle) {
   });
 }
 
-// API keys from Vite 
-const CAT_API_KEY = import.meta.env.VITE_CAT_API_KEY;
-const DOG_API_KEY = import.meta.env.VITE_DOG_API_KEY;
 
-// Fetch and display cat images
-async function fetchCats(limit = 10) {
-  const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=${limit}&api_key=${CAT_API_KEY}`);
-  const data = await response.json();
-  displayImages(data, 'cat');
+// ==================== PETS.HTML ====================
+
+
+function loadRandomCats() {
+    const container = document.getElementById('cat-container'); 
+    const url = `https://api.thecatapi.com/v1/images/search?limit=5`;
+
+    fetch(url, {
+        headers: { 'x-api-key': API_KEY },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            container.innerHTML = ''; 
+            data.forEach((cat) => {
+                const img = document.createElement('img');
+                img.src = cat.url;
+                img.alt = 'A cute cat';
+                img.className = 'pet-image'; 
+                container.appendChild(img);
+            });
+        })
+        .catch((error) => console.error('Error loading random cat images:', error));
 }
 
-// Fetch and display dog images
-async function fetchDogs(limit = 10) {
-  const response = await fetch(`https://api.thedogapi.com/v1/images/search?limit=${limit}&api_key=${DOG_API_KEY}`);
-  const data = await response.json();
-  displayImages(data, 'dog');
+
+function loadRandomDogs() {
+    const container = document.getElementById('dog-container'); 
+    const url = `https://api.thedogapi.com/v1/images/search?limit=5`;
+
+    fetch(url, {
+        headers: { 'x-api-key': API_KEY },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            container.innerHTML = ''; 
+            data.forEach((dog) => {
+                const img = document.createElement('img');
+                img.src = dog.url;
+                img.alt = 'A cute dog';
+                img.className = 'pet-image'; 
+                container.appendChild(img);
+            });
+        })
+        .catch((error) => console.error('Error loading random dog images:', error));
 }
 
-// Display images
-function displayImages(images, type) {
-  const container = document.getElementById(`${type}-container`);
-  if (container) {
-    container.innerHTML = '';  // Clear existing images
-    images.forEach(image => {
-      const img = document.createElement('img');
-      img.src = image.url;
-      img.alt = `${type} image`;
-      img.classList.add('pet-image');
-      img.dataset.imageId = image.id; // Storing image ID for voting
-      container.appendChild(img);
-    });
-  }
+
+function loadBreeds(type, selectId) {
+    const url = type === 'cat' ? `https://api.thecatapi.com/v1/breeds` : `https://api.thedogapi.com/v1/breeds`;
+    const select = document.getElementById(selectId);
+
+    fetch(url, {
+        headers: { 'x-api-key': API_KEY },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            select.innerHTML = '<option value="">Select a Breed</option>'; // Default option
+            data.forEach((breed) => {
+                const option = document.createElement('option');
+                option.value = breed.id;
+                option.textContent = breed.name;
+                select.appendChild(option);
+            });
+        })
+        .catch((error) => console.error(`Error loading ${type} breeds:`, error));
 }
 
-// Fetch breeds and populate breed dropdowns
-async function fetchCatBreeds() {
-  const response = await fetch(`https://api.thecatapi.com/v1/breeds?api_key=${CAT_API_KEY}`);
-  const breeds = await response.json();
-  populateBreedSelect(breeds, 'cat');
+
+function fetchImagesByBreed(type, breedId, containerId) {
+    const url = `https://api.${type === 'cat' ? 'thecatapi' : 'thedogapi'}.com/v1/images/search?limit=10&breed_ids=${breedId}`;
+    const container = document.getElementById(containerId);
+
+    fetch(url, {
+        headers: { 'x-api-key': API_KEY },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            container.innerHTML = ''; 
+            if (data.length === 0) {
+                container.textContent = `No ${type} images found for this breed.`;
+            } else {
+                data.forEach((item) => {
+                    const img = document.createElement('img');
+                    img.src = item.url;
+                    img.alt = `${type} image`;
+                    img.className = 'pet-image';
+                    container.appendChild(img);
+                });
+            }
+        })
+        .catch((error) => console.error(`Error fetching ${type} images by breed:`, error));
 }
 
-async function fetchDogBreeds() {
-  const response = await fetch(`https://api.thedogapi.com/v1/breeds?api_key=${DOG_API_KEY}`);
-  const breeds = await response.json();
-  populateBreedSelect(breeds, 'dog');
-}
 
-function populateBreedSelect(breeds, type) {
-  const select = document.getElementById(`${type}-breed-select`);
-  if (select) {
-    select.innerHTML = '';
-    breeds.forEach(breed => {
-      const option = document.createElement('option');
-      option.value = breed.id;
-      option.textContent = breed.name;
-      select.appendChild(option);
-    });
-  }
-}
+function initPetsPage() {
+    const catContainer = document.getElementById('cat-container');
+    const dogContainer = document.getElementById('dog-container');
 
-// Fetch images by breed
-async function fetchImagesByBreed(type, breedId) {
-  const apiURL = type === 'cat'
-    ? `https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=${breedId}&api_key=${CAT_API_KEY}`
-    : `https://api.thedogapi.com/v1/images/search?limit=10&breed_ids=${breedId}&api_key=${DOG_API_KEY}`;
-
-  const response = await fetch(apiURL);
-  const data = await response.json();
-  displayImages(data, type);
-}
-
-// Fetch and display initial images and breeds on page load
-document.addEventListener('DOMContentLoaded', () => {
-  fetchCats();
-  fetchDogs();
-  fetchCatBreeds();
-  fetchDogBreeds();
-
-  const catSelect = document.getElementById('cat-breed-select');
-  if (catSelect) {
-    catSelect.addEventListener('change', (event) => {
-      const breedId = event.target.value;
-      fetchImagesByBreed('cat', breedId);
-    });
-  }
-
-  const dogSelect = document.getElementById('dog-breed-select');
-  if (dogSelect) {
-    dogSelect.addEventListener('change', (event) => {
-      const breedId = event.target.value;
-      fetchImagesByBreed('dog', breedId);
-    });
-  }
-
-  fetchCatForVoting();
-  fetchDogForVoting();
-});
-
-// ========   VOTING =========
-
-async function fetchCatForVoting() {
-  const response = await fetch(`https://api.thecatapi.com/v1/images/search?limit=1&api_key=${CAT_API_KEY}`);
-  const data = await response.json();
-  displayVotingImage(data[0], 'cat');
-}
-
-// async function fetchDogForVoting() {
-//   const response = await fetch(`https://api.thedogapi.com/v1/images/search?limit=1&api_key=${DOG_API_KEY}`);
-//   const data = await response.json();
-//   displayVotingImage(data[0], 'dog');
-// }
-
-function displayVotingImage(image, type) {
-  const container = document.getElementById(`${type}-image-container`);
-  if (container) {
-    container.innerHTML = ''; // Clear previous image
-    const img = document.createElement('img');
-    img.src = image.url;
-    img.alt = `${type} image for voting`;
-    img.classList.add('pet-image');
-    img.classList.add('large-image');
-    img.dataset.imageId = image.id; 
-    container.appendChild(img);
-  }
-}
-
-async function voteOnImage(type, value) {
-  const imageContainer = document.getElementById(`${type}-image-container`).querySelector('img');
-  const imageId = imageContainer ? imageContainer.dataset.imageId : null;
-
-  if (!imageId) {
-    console.error(`No image found to vote on for ${type}`);
-    return;
-  }
-
-  // Create the vote data following the API structure
-  const voteData = {
-    image_id: imageId,
-    value: value,
-    sub_id: "user-123",  // Optional: Use this to track votes per user (customize as needed)
-  };
-
-  // Select the correct API key based on the image type
-  const apiKey = type === 'cat' ? CAT_API_KEY : DOG_API_KEY;
-
-  try {
-    const response = await fetch(`https://api.the${type}api.com/v1/votes`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-      },
-      body: JSON.stringify(voteData),
-    });
-
-    if (response.ok) {
-      alert(`${type.charAt(0).toUpperCase() + type.slice(1)} voted successfully!`);
-      // Fetch a new image after voting
-      type === 'cat' ? fetchCatForVoting() : fetchDogForVoting();
-    } else {
-      console.error(`Failed to vote: ${response.status}`);
-      console.log("Response details:", await response.text());  // Log more response details for troubleshooting
+    if (catContainer) {
+        loadRandomCats();
+        loadBreeds('cat', 'cat-breed-select');
+        document.getElementById('cat-breed-select').addEventListener('change', (event) => {
+            const breedId = event.target.value;
+            if (breedId) {
+                fetchImagesByBreed('cat', breedId, 'cat-container');
+            } else {
+                loadRandomCats();
+            }
+        });
     }
-  } catch (error) {
-    console.error('Error voting on image:', error);
-  }
+
+    if (dogContainer) {
+        loadRandomDogs();
+        loadBreeds('dog', 'dog-breed-select');
+        document.getElementById('dog-breed-select').addEventListener('change', (event) => {
+            const breedId = event.target.value;
+            if (breedId) {
+                fetchImagesByBreed('dog', breedId, 'dog-container');
+            } else {
+                loadRandomDogs();
+            }
+        });
+    }
 }
 
-window.voteOnImage = voteOnImage;
+// ==================== VOTING.HTML ====================
+
+let currentCatImageId = null; 
+
+
+function fetchRandomCat() {
+    const container = document.getElementById('cat-image-container');
+    fetch('https://api.thecatapi.com/v1/images/search', {
+        headers: { 'x-api-key': API_KEY },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            container.innerHTML = ''; 
+            if (data.length > 0) {
+                const img = document.createElement('img');
+                img.src = data[0].url;
+                img.alt = 'A cute cat';
+                img.className = 'cat-image';
+                container.appendChild(img);
+                currentCatImageId = data[0].id; 
+            } else {
+                container.textContent = 'No cat images found.';
+            }
+        })
+        .catch((error) => console.error('Error fetching cat image:', error));
+}
+
+
+function vote(value) {
+    if (!currentCatImageId) {
+        alert('No cat image to vote on!');
+        return;
+    }
+
+    fetch('https://api.thecatapi.com/v1/votes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': API_KEY,
+        },
+        body: JSON.stringify({ image_id: currentCatImageId, value }),
+    })
+        .then((response) => response.json())
+        .then(() => {
+            alert('Vote submitted!');
+            fetchRandomCat(); 
+        })
+        .catch((error) => console.error('Error submitting vote:', error));
+}
+
+
+function initVotingPage() {
+    const container = document.getElementById('cat-image-container');
+    if (container) {
+        fetchRandomCat();
+        document.getElementById('upvote-button').addEventListener('click', () => vote(1));
+        document.getElementById('downvote-button').addEventListener('click', () => vote(-1));
+    }
+}
+
+
+// Initialize functionality 
+document.addEventListener('DOMContentLoaded', () => {
+    initPetsPage(); 
+    initVotingPage(); 
+})
+
 
 
 

@@ -51,27 +51,27 @@
 
 
 
-/* Box sizing rules */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Remove default margin */
+
 * {
   margin: 0;
   padding: 0;
   font: inherit;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+
 ul[role="list"],
 ol[role="list"] {
   list-style: none;
 }
 
-/* Set core root defaults */
+
 html:focus-within {
   scroll-behavior: smooth;
 }
@@ -81,28 +81,24 @@ body {
   height: 100%;
 }
 
-/* Set core body defaults */
+
 body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
 
-/* A elements that don't have a class get default styles */
+/* default styling */
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
-/* Make images easier to work with */
+
 img {
   max-width: 100%;
   display: block;
 }
 
-/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
-@media (prefers-reduced-motion: reduce) {
-  html:focus-within {
-    scroll-behavior: auto;
-  }
+
 
   *,
   *::before,
@@ -112,14 +108,13 @@ img {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
+
 
 /* general styling */
 
 body{
   font-size: var(--fs-body);
   font-family: var(--ff-body);
-  /* color: var(--clr-primary-400); */
 }
 
 .container {
@@ -188,14 +183,13 @@ p{
   display: none;
 }
 
-/* add the font style to the nav list both mobile and desktop sizes */
+
 .nav-list {
   font-size: var(--fs-nav);
 }
 
 .nav-list {
   display: flex;
-  /* the clamp prevents overcramping when the screen sizes gets smaller */
   gap: clamp(var(--size-400), 5vw, var(--size-700));
   font-weight: var(--fw-semi-bold);
 }
@@ -214,16 +208,12 @@ p{
 
 /* ========= Mobile Nav ================ */
 @media (max-width: 50em){
-  /* the navigation is not displayed automatically */
 .primary-navigation {
   display: none;
 
   position: fixed;
   padding: var(--size-700);
-  /* defining the position of the elements edges combines top right left bottom into one property */
-  /* often used with position absolute or fixed */
   inset: 7rem var(--size-400) auto;
-  /* even though you have the inset property you can still add max width and margin optionss */
   max-width: 25rem;
   margin-left: auto;
   background-color: var(--clr-neutral-100);
@@ -239,7 +229,7 @@ p{
   
 }
 
-/* styling for the list of links (ul) */
+
 .nav-list {
   display: grid;
   gap: var(--size-600);
@@ -248,7 +238,6 @@ p{
 }
 
 
-/* navigation is displayed when you click on the toggle icon we set this up using javascript. The css just styles it.  */
 .primary-navigation[data-visible] {
   display: grid;
 }
@@ -271,7 +260,7 @@ p{
   }
 }
 
-/* navigation */
+
 
 
 .primary-header-logo{
@@ -318,7 +307,7 @@ p{
 }
 
 
-/* for larger screen sizes */
+/* larger screens */
 @media (min-width: 50em){
   .even-columns {
     grid-auto-flow: column;
@@ -349,27 +338,26 @@ box-shadow: var(--box-shadow) ;
 footer {
   display: flex;
   flex-wrap: wrap;
-  /* height: max-content; */
   padding: 20px;
-  background-color: var(--clr-accent-300); /* Light background */
+  background-color: var(--clr-accent-300); 
   color: var(--clr-primary-400);
   font-size: var(--fs-600);
-  border-top: 1px solid #ccc; /* Optional border on top */
+  border-top: 1px solid #ccc; 
 }
 
 .primary-footer {
-  flex: 1; /* Grow to take up available space */
+  flex: 1; 
 }
 
 .footer-nav {
-  display: flex; /* Set to flex for column layout */
-  flex-direction: column; /* Arrange items in a column */
+  display: flex; 
+  flex-direction: column; 
 }
 
 .footer-nav ul {
-  list-style: none; /* Remove bullet points */
+  list-style: none; 
   padding: 0;
-  margin: 0; /* Remove default margin */
+  margin: 0; 
 }
 
 .footer-nav li {
@@ -379,36 +367,36 @@ footer {
 }
 
 .footer-nav a {
-  text-decoration: none; /* Remove underline */
+  text-decoration: none; 
   color: var(--clr-primary-400);
   font-size: var(--fs-600);
   font-weight: bold;
 }
 
 .footer-nav a:hover {
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline; 
 }
 
 .contact-methods {
-  display: flex; /* Use flexbox for layout */
-  flex-direction: column; /* Stack contact methods in a column */
+  display: flex; 
+  flex-direction: column; 
   align-items: flex-end ;
   margin-top: 20px ;
-  margin-right: 6rem; /* Add margin to separate from navigation */
+  margin-right: 6rem; 
 }
 
 .contact-method {
-  display: flex; /* Flex container for icons and text */
-  align-items: center; /* Center items vertically */
-  margin: 20px 0; /* Space between contact methods */
+  display: flex; 
+  align-items: center; 
+  margin: 20px 0; 
 }
 
 .contact-method icon {
-  padding: 10px; /* Space between icon and text */
+  padding: 10px; 
 }
 
 .contact-method h3 {
-  margin: none; /* Remove margin */
+  margin: none; 
   font-weight: bold;
 }
 
@@ -417,24 +405,18 @@ footer {
 }
 
 footer p {
-  margin-top: 20px; /* Space above copyright */
-  text-align: center; /* Center copyright text */
-  width: 100%; /* Take full width */
+  margin-top: 20px; 
+  text-align: center; 
+  width: 100%; 
 }
 
 .image-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
 }
 
-.pet-image {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
-}
+
 
 #favorites-container {
   margin-top: 20px;
@@ -443,16 +425,26 @@ footer p {
 
 
 /* styling for pets.html */
+
+
 .container-pets{
   padding-top: var(--size-1000);
   padding-bottom: var(--size-1000);
+}
+
+.pet-image{
+  width: var(--size-1000);
+  height: auto;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
 }
 
 #cats {
   display: flex;
   flex-direction: column;
   align-items: center;
- margin: 2rem 0;
+  margin: 2rem 0;
 }
 
 #cat-container {
@@ -460,7 +452,9 @@ footer p {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  max-width: 100%;
 }
+
 
 #dogs {
   display: flex;
@@ -474,15 +468,52 @@ footer p {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  max-width: 100%;
 }
 
-select{
+
+/* STYLING for dropdown */
+
+select {
+  appearance: none; 
+  cursor: pointer;
+  border: 0;
+  border-radius: 100vmax; 
   margin: 3rem;
+  padding: 1.25em 2.5em; 
+  font-weight: var(--fw-bold); 
+  font-size: var(--fs-button); 
+  line-height: 1;
+  color: var(--clr-neutral-100); 
+  background-color: var(--clr-accent-400); 
+  box-shadow: 0 1.125em 1em -1em var(--clr-accent-500); 
+  text-align: center;
 }
+
+select:hover,
+select:focus-visible {
+  background-color: var(--clr-accent-300); 
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FFF' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1em center;
+  background-size: 1em;
+  padding-right: 2.5em; 
+}
+
+select {
+  width: 100%; 
+  max-width: 300px;
+  margin: 1em auto; 
+}
+
+
 
 /* STYLING FOR VOTING.HTML */
 
-/* align the container */
+
 #voting-container {
   display: flex;
   justify-content: center;
@@ -504,47 +535,14 @@ select{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: var(--size-500);
+  padding-bottom: var(--size-800);
 }
-
-.large-image {
-  width: 500px;
+.cat-image{
+  width: 850px;
   height: auto;
-  object-fit: cover;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
 }
 
-/* STYLING FOR PETS.HTML */
-
-select {
-  appearance: none; /* Remove default browser styling */
-  cursor: pointer;
-  border: 0;
-  border-radius: 100vmax; /* Make it rounded */
-  padding: 1.25em 2.5em; /* Match button padding */
-  font-weight: var(--fw-bold); /* Match font weight */
-  font-size: var(--fs-button); /* Match font size */
-  line-height: 1;
-  color: var(--clr-neutral-100); /* White text */
-  background-color: var(--clr-accent-400); /* Button background color */
-  box-shadow: 0 1.125em 1em -1em var(--clr-accent-500); /* Match button shadow */
-  text-align: center;
-}
-
-select:hover,
-select:focus-visible {
-  background-color: var(--clr-accent-300); /* Button hover background color */
-}
-
-select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FFF' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1em center;
-  background-size: 1em;
-  padding-right: 2.5em; /* Space for custom arrow */
-}
-
-select {
-  width: 100%; /* Adjust as needed */
-  max-width: 300px;
-  margin: 1em auto; /* Center dropdown */
-}
