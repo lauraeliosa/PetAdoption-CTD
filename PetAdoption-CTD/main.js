@@ -1,5 +1,6 @@
-const API_KEY = import.meta.env.VITE_CAT_API_KEY; 
-const DOG_API_KEY = import.meta.env.VITE_DOG_API_KEY;
+//const API_KEY = import.meta.env.VITE_CAT_API_KEY; 
+const VITE_CAT_API_KEY = import.meta.env.VITE_CAT_API_KEY;
+const VITE_DOG_API_KEY = import.meta.env.VITE_DOG_API_KEY;
 
 //nav hamburger menu
 const primaryHeader = document.querySelector('.primary-header');
@@ -27,7 +28,7 @@ function loadRandomCats() {
     const url = `https://api.thecatapi.com/v1/images/search?limit=5`;
 
     fetch(url, {
-        headers: { 'x-api-key': API_KEY },
+        headers: { 'x-api-key': VITE_CAT_API_KEY },
     })
         .then((response) => response.json())
         .then((data) => {
@@ -49,7 +50,7 @@ function loadRandomDogs() {
     const url = `https://api.thedogapi.com/v1/images/search?limit=5`;
 
     fetch(url, {
-        headers: { 'x-api-key': API_KEY },
+        headers: { 'x-api-key': VITE_CAT_API_KEY },
     })
         .then((response) => response.json())
         .then((data) => {
@@ -71,7 +72,7 @@ function loadBreeds(type, selectId) {
     const select = document.getElementById(selectId);
 
     fetch(url, {
-        headers: { 'x-api-key': API_KEY },
+        headers: { 'x-api-key': VITE_CAT_API_KEY },
     })
         .then((response) => response.json())
         .then((data) => {
@@ -92,7 +93,7 @@ function fetchImagesByBreed(type, breedId, containerId) {
     const container = document.getElementById(containerId);
 
     fetch(url, {
-        headers: { 'x-api-key': API_KEY },
+        headers: { 'x-api-key': VITE_CAT_API_KEY },
     })
         .then((response) => response.json())
         .then((data) => {
@@ -152,7 +153,7 @@ let currentCatImageId = null;
 function fetchRandomCat() {
     const container = document.getElementById('cat-image-container');
     fetch('https://api.thecatapi.com/v1/images/search', {
-        headers: { 'x-api-key': API_KEY },
+        headers: { 'x-api-key': VITE_CAT_API_KEY },
     })
         .then((response) => response.json())
         .then((data) => {
@@ -182,7 +183,7 @@ function vote(value) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'x-api-key': API_KEY,
+            'x-api-key': VITE_CAT_API_KEY,
         },
         body: JSON.stringify({ image_id: currentCatImageId, value }),
     })
@@ -214,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-console.log("Environment Variables:", import.meta.env);
-console.log("VITE_CAT_API_KEY:", import.meta.env.VITE_CAT_API_KEY);
+
 
 
