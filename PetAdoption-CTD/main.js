@@ -1,4 +1,5 @@
 const API_KEY = import.meta.env.VITE_CAT_API_KEY; 
+const DOG_API_KEY = import.meta.env.VITE_DOG_API_KEY;
 
 //nav hamburger menu
 const primaryHeader = document.querySelector('.primary-header');
