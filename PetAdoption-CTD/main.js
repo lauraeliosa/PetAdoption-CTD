@@ -1,15 +1,7 @@
-//const API_KEY = import.meta.env.VITE_CAT_API_KEY; 
-const VITE_CAT_API_KEY = import.meta.env.VITE_CAT_API_KEY;
-const VITE_DOG_API_KEY = import.meta.env.VITE_DOG_API_KEY;
-
-
-
-
 //nav hamburger menu
 const primaryHeader = document.querySelector('.primary-header');
 const navToggle = document.querySelector('.mobile-nav-toggle');
 const primaryNav = document.getElementById('primary-navigation');
-
 
 if (navToggle) {
   navToggle.addEventListener('click', () => {
@@ -22,63 +14,35 @@ if (navToggle) {
   });
 }
 
-
 // ==================== PETS.HTML ====================
 
+function loadRandomPets(type) {
+    const url = `/.netlify/functions/fetchPets?type=${type}`;  // ✅ Calls the Netlify Function
 
-function loadRandomCats() {
-    const container = document.getElementById('cat-container'); 
-    const url = `https://api.thecatapi.com/v1/images/search?limit=5`;
-
-    fetch(url, {
-        headers: { 'x-api-key': VITE_CAT_API_KEY },
-    })
-        .then((response) => response.json())
-        .then((data) => {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById(`${type}-container`);
             container.innerHTML = ''; 
-            data.forEach((cat) => {
+
+            data.forEach(pet => {
                 const img = document.createElement('img');
-                img.src = cat.url;
-                img.alt = 'A cute cat';
+                img.src = pet.url;
+                img.alt = `A cute ${type}`;
                 img.className = 'pet-image'; 
                 container.appendChild(img);
             });
         })
-        .catch((error) => console.error('Error loading random cat images:', error));
+        .catch(error => console.error(`Error loading ${type} images:`, error));
 }
-
-
-function loadRandomDogs() {
-    const container = document.getElementById('dog-container'); 
-    const url = `https://api.thedogapi.com/v1/images/search?limit=5`;
-
-    fetch(url, {
-        headers: { 'x-api-key': VITE_CAT_API_KEY },
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            container.innerHTML = ''; 
-            data.forEach((dog) => {
-                const img = document.createElement('img');
-                img.src = dog.url;
-                img.alt = 'A cute dog';
-                img.className = 'pet-image'; 
-                container.appendChild(img);
-            });
-        })
-        .catch((error) => console.error('Error loading random dog images:', error));
-}
-
 
 function loadBreeds(type, selectId) {
-    const url = type === 'cat' ? `https://api.thecatapi.com/v1/breeds` : `https://api.thedogapi.com/v1/breeds`;
+    const url = `/.netlify/functions/fetchBreeds?type=${type}`; // ✅ Calls the Netlify Function
     const select = document.getElementById(selectId);
 
-    fetch(url, {
-        headers: { 'x-api-key': VITE_CAT_API_KEY },
-    })
-        .then((response) => response.json())
-        .then((data) => {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
             select.innerHTML = '<option value="">Select a Breed</option>'; // Default option
             data.forEach((breed) => {
                 const option = document.createElement('option');
@@ -90,16 +54,13 @@ function loadBreeds(type, selectId) {
         .catch((error) => console.error(`Error loading ${type} breeds:`, error));
 }
 
-
 function fetchImagesByBreed(type, breedId, containerId) {
-    const url = `https://api.${type === 'cat' ? 'thecatapi' : 'thedogapi'}.com/v1/images/search?limit=10&breed_ids=${breedId}`;
+    const url = `/.netlify/functions/fetchImagesByBreed?type=${type}&breedId=${breedId}`; // ✅ Calls Netlify Function
     const container = document.getElementById(containerId);
 
-    fetch(url, {
-        headers: { 'x-api-key': VITE_CAT_API_KEY },
-    })
-        .then((response) => response.json())
-        .then((data) => {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
             container.innerHTML = ''; 
             if (data.length === 0) {
                 container.textContent = `No ${type} images found for this breed.`;
@@ -116,33 +77,32 @@ function fetchImagesByBreed(type, breedId, containerId) {
         .catch((error) => console.error(`Error fetching ${type} images by breed:`, error));
 }
 
-
 function initPetsPage() {
     const catContainer = document.getElementById('cat-container');
     const dogContainer = document.getElementById('dog-container');
 
     if (catContainer) {
-        loadRandomCats();
-        loadBreeds('cat', 'cat-breed-select');
+        loadRandomPets("cat");
+        loadBreeds("cat", "cat-breed-select");
         document.getElementById('cat-breed-select').addEventListener('change', (event) => {
             const breedId = event.target.value;
             if (breedId) {
-                fetchImagesByBreed('cat', breedId, 'cat-container');
+                fetchImagesByBreed("cat", breedId, "cat-container");
             } else {
-                loadRandomCats();
+                loadRandomPets("cat");
             }
         });
     }
 
     if (dogContainer) {
-        loadRandomDogs();
-        loadBreeds('dog', 'dog-breed-select');
+        loadRandomPets("dog");
+        loadBreeds("dog", "dog-breed-select");
         document.getElementById('dog-breed-select').addEventListener('change', (event) => {
             const breedId = event.target.value;
             if (breedId) {
-                fetchImagesByBreed('dog', breedId, 'dog-container');
+                fetchImagesByBreed("dog", breedId, "dog-container");
             } else {
-                loadRandomDogs();
+                loadRandomPets("dog");
             }
         });
     }
@@ -152,14 +112,11 @@ function initPetsPage() {
 
 let currentCatImageId = null; 
 
-
 function fetchRandomCat() {
     const container = document.getElementById('cat-image-container');
-    fetch('https://api.thecatapi.com/v1/images/search', {
-        headers: { 'x-api-key': VITE_CAT_API_KEY },
-    })
-        .then((response) => response.json())
-        .then((data) => {
+    fetch('/.netlify/functions/fetchRandomCat')  // ✅ Calls Netlify Function
+        .then(response => response.json())
+        .then(data => {
             container.innerHTML = ''; 
             if (data.length > 0) {
                 const img = document.createElement('img');
@@ -172,9 +129,8 @@ function fetchRandomCat() {
                 container.textContent = 'No cat images found.';
             }
         })
-        .catch((error) => console.error('Error fetching cat image:', error));
+        .catch(error => console.error('Error fetching cat image:', error));
 }
-
 
 function vote(value) {
     if (!currentCatImageId) {
@@ -182,11 +138,10 @@ function vote(value) {
         return;
     }
 
-    fetch('https://api.thecatapi.com/v1/votes', {
+    fetch('/.netlify/functions/voteCat', { // ✅ Calls Netlify Function
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'x-api-key': VITE_CAT_API_KEY,
         },
         body: JSON.stringify({ image_id: currentCatImageId, value }),
     })
@@ -198,7 +153,6 @@ function vote(value) {
         .catch((error) => console.error('Error submitting vote:', error));
 }
 
-
 function initVotingPage() {
     const container = document.getElementById('cat-image-container');
     if (container) {
@@ -208,19 +162,17 @@ function initVotingPage() {
     }
 }
 
-
 // Initialize functionality 
 document.addEventListener('DOMContentLoaded', () => {
     initPetsPage(); 
     initVotingPage(); 
-})
+});
 
 
 
 
 
-console.log("Vite Environment Variables at Runtime:", import.meta.env);
-console.log("VITE_CAT_API_KEY:", import.meta.env.VITE_CAT_API_KEY);
-console.log("VITE_DOG_API_KEY:", import.meta.env.VITE_DOG_API_KEY);
+
+
 
 
