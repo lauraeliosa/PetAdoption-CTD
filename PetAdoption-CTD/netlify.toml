@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"  # Change if needed, e.g., "build" for React
+
+[context.production.environment]
+  VITE_CAT_API_KEY = "live_27QTku4jzycs3eeNO5dXhoN4PHys8Pul6MgTxUkQhwmGs2bxmMe4WE81kbYJ6tcK"
+  VITE_DOG_API_KEY = "live_27QTku4jzycs3eeNO5dXhoN4PHys8Pul6MgTxUkQhwmGs2bxmMe4WE81kbYJ6tcK"
+
+[context.deploy-preview.environment]
+  VITE_CAT_API_KEY = "live_27QTku4jzycs3eeNO5dXhoN4PHys8Pul6MgTxUkQhwmGs2bxmMe4WE81kbYJ6tcK"
+  VITE_DOG_API_KEY = "live_27QTku4jzycs3eeNO5dXhoN4PHys8Pul6MgTxUkQhwmGs2bxmMe4WE81kbYJ6tcK"
