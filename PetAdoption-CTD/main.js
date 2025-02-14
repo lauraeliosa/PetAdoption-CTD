@@ -219,5 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+console.log("Vite Environment Variables at Runtime:", import.meta.env);
+console.log("VITE_CAT_API_KEY:", import.meta.env.VITE_CAT_API_KEY);
+console.log("VITE_DOG_API_KEY:", import.meta.env.VITE_DOG_API_KEY);
 
 
