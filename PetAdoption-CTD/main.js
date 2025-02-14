@@ -2,6 +2,9 @@
 const VITE_CAT_API_KEY = import.meta.env.VITE_CAT_API_KEY;
 const VITE_DOG_API_KEY = import.meta.env.VITE_DOG_API_KEY;
 
+
+
+
 //nav hamburger menu
 const primaryHeader = document.querySelector('.primary-header');
 const navToggle = document.querySelector('.mobile-nav-toggle');
